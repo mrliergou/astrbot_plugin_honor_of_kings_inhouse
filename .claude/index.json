@@ -1,0 +1,207 @@
+{
+  "timestamp": "2026-02-23T20:34:56+08:00",
+  "scan_version": "1.0.0",
+  "project": {
+    "name": "astrbot_plugin_honor_of_kings_inhouse",
+    "description": "王者荣耀内战报名分组插件 - 基于 AstrBot 框架的 Python 插件",
+    "version": "1.0.0",
+    "language": "Python",
+    "framework": "AstrBot Plugin API"
+  },
+  "modules": [
+    {
+      "name": "root",
+      "path": ".",
+      "type": "plugin_entry",
+      "entry_files": [
+        "main.py"
+      ],
+      "key_files": [
+        "models.py",
+        "constants.py",
+        "errors.py",
+        "schemas.py",
+        "command_parser.py"
+      ],
+      "interfaces": [
+        "HonorOfKingsInhousePlugin.cmd_signup",
+        "HonorOfKingsInhousePlugin.cmd_cancel",
+        "HonorOfKingsInhousePlugin.cmd_list",
+        "HonorOfKingsInhousePlugin.cmd_random_group",
+        "HonorOfKingsInhousePlugin.cmd_smart_group",
+        "HonorOfKingsInhousePlugin.cmd_clear",
+        "HonorOfKingsInhousePlugin.cmd_history",
+        "HonorOfKingsInhousePlugin.cmd_winrate",
+        "HonorOfKingsInhousePlugin.cmd_archive"
+      ],
+      "dependencies": [
+        "astrbot.api.event",
+        "astrbot.api.star",
+        "astrbot.api"
+      ],
+      "test_files": [],
+      "config_files": [
+        "metadata.json"
+      ]
+    },
+    {
+      "name": "services",
+      "path": "services",
+      "type": "business_logic",
+      "entry_files": [
+        "signup_service.py",
+        "grouping_service.py",
+        "history_service.py",
+        "auth_service.py"
+      ],
+      "interfaces": [
+        "SignupService.register",
+        "SignupService.cancel",
+        "SignupService.list_board",
+        "GroupingService.random_group",
+        "GroupingService.smart_group",
+        "GroupingService.archive_match",
+        "HistoryService.query_matches",
+        "HistoryService.win_rate",
+        "AuthService.is_admin"
+      ],
+      "dependencies": [
+        "repositories.state_repository",
+        "utils.time_utils",
+        "algorithms"
+      ],
+      "test_files": [],
+      "important_paths": [
+        "services/signup_service.py",
+        "services/grouping_service.py",
+        "services/history_service.py",
+        "services/auth_service.py"
+      ]
+    },
+    {
+      "name": "algorithms",
+      "path": "algorithms",
+      "type": "computation",
+      "entry_files": [
+        "random_grouping.py",
+        "greedy_backtracking.py",
+        "min_cost_flow.py"
+      ],
+      "interfaces": [
+        "random_group",
+        "greedy_backtracking_group",
+        "min_cost_flow_group"
+      ],
+      "dependencies": [
+        "models",
+        "constants"
+      ],
+      "test_files": [],
+      "important_paths": [
+        "algorithms/min_cost_flow.py",
+        "algorithms/greedy_backtracking.py",
+        "algorithms/random_grouping.py"
+      ]
+    },
+    {
+      "name": "repositories",
+      "path": "repositories",
+      "type": "data_persistence",
+      "entry_files": [
+        "state_repository.py"
+      ],
+      "interfaces": [
+        "StateRepository.load",
+        "StateRepository.save",
+        "StateRepository.get_chat_state",
+        "StateRepository.update_chat_state",
+        "StateRepository.with_chat_lock",
+        "get_repository"
+      ],
+      "dependencies": [
+        "models",
+        "schemas",
+        "utils.lock_utils",
+        "utils.time_utils"
+      ],
+      "test_files": [],
+      "data_models": [
+        "GlobalState",
+        "ChatState",
+        "SignupPool"
+      ],
+      "important_paths": [
+        "repositories/state_repository.py"
+      ]
+    },
+    {
+      "name": "utils",
+      "path": "utils",
+      "type": "utilities",
+      "entry_files": [
+        "time_utils.py",
+        "lock_utils.py"
+      ],
+      "interfaces": [
+        "get_current_timestamp",
+        "get_expiry_timestamp",
+        "is_expired",
+        "is_new_day",
+        "get_chat_lock"
+      ],
+      "dependencies": [],
+      "test_files": [],
+      "important_paths": [
+        "utils/time_utils.py",
+        "utils/lock_utils.py"
+      ]
+    }
+  ],
+  "coverage": {
+    "total_files": 22,
+    "scanned_files": 22,
+    "coverage_percentage": 100,
+    "ignored_files": 0,
+    "ignored_patterns": [
+      "__pycache__/**",
+      "*.pyc",
+      ".git/**",
+      ".claude/skills/**",
+      ".claude/commands/**",
+      "data/**"
+    ]
+  },
+  "gaps": {
+    "missing_tests": [
+      "services/",
+      "algorithms/",
+      "repositories/"
+    ],
+    "missing_docs": [],
+    "missing_interfaces": [],
+    "missing_data_models": []
+  },
+  "statistics": {
+    "total_python_files": 22,
+    "total_lines_of_code": "~2000",
+    "modules_count": 5,
+    "services_count": 4,
+    "algorithms_count": 3,
+    "data_models_count": 9
+  },
+  "recommendations": {
+    "next_steps": [
+      "添加单元测试覆盖（优先：algorithms/ 和 services/）",
+      "补充集成测试（端到端命令流程）",
+      "添加并发测试（锁机制验证）",
+      "考虑添加性能测试（大量群组场景）"
+    ],
+    "priority_areas": [
+      "algorithms/min_cost_flow.py - 算法优化与测试",
+      "repositories/state_repository.py - 并发安全性测试",
+      "services/signup_service.py - 过期清理逻辑测试"
+    ]
+  },
+  "truncated": false,
+  "scan_complete": true
+}

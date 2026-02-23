@@ -17,7 +17,11 @@
       "Bash(git push origin backup/*)",
       "Bash(git push origin feature/*)",
       "Bash(git push origin dev)",
-      "Bash(git fetch origin:*)"
+      "Bash(git fetch origin:*)",
+      "Bash(python -m py_compile:*)",
+      "Bash(python:*)",
+      "Bash(wc:*)",
+      "Bash(powershell:*)"
     ]
   }
 }
