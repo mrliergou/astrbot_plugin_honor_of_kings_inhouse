@@ -9,7 +9,9 @@
       "Bash(echo:*)",
       "Bash(npx @fission-ai/openspec:*)",
       "Bash(C:/Users/Administrator/.claude/bin/codeagent-wrapper.exe:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)"
     ]
   }
 }
