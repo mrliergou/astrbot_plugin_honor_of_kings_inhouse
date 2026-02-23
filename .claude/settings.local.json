@@ -11,7 +11,13 @@
       "Bash(C:/Users/Administrator/.claude/bin/codeagent-wrapper.exe:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(git rm:*)",
+      "Bash(git mv:*)",
+      "Bash(git push origin backup/*)",
+      "Bash(git push origin feature/*)",
+      "Bash(git push origin dev)",
+      "Bash(git fetch origin:*)"
     ]
   }
 }
