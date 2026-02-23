@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__contextweaver__codebase-retrieval",
+      "Bash(mcp__zread__search_doc:*)",
+      "WebSearch",
+      "WebFetch(domain:docs.astrbot.app)",
+      "WebFetch(domain:github.com)",
+      "Bash(echo:*)",
+      "Bash(npx @fission-ai/openspec:*)",
+      "Bash(C:/Users/Administrator/.claude/bin/codeagent-wrapper.exe:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}
